@@ -56,8 +56,13 @@ Exam_grade_dist <- grades %>%
 
 Exam_grade_dist
 ```
+### Question 5
 
-
+Below is a table depicting the number of students in each group:
+```{r}
+group_table <- grades %>%
+  filter(Group, group_by(Group))
+```
 
 
 
