@@ -60,6 +60,12 @@ Exam_grade_dist
 
 Below is a table depicting the number of students in each group:
 ```{r}
+bygroup <- grades %>%
+  group_by(Group) %>%
+  summarise(N=n()) %>%
+  arrange(desc(Group)) %>%
+  knitr::kable()
+bygroup
 ```
 
 
