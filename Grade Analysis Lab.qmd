@@ -1,0 +1,15 @@
+---
+title: "Grade Analysis"
+author: "Sarah Grant"
+format: html
+---
+```{r}
+#| message: false
+here::i_am("Grade Analysis.Rproj")
+library(here)
+library(vroom)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+```
+
