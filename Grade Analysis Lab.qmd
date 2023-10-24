@@ -43,8 +43,19 @@ Non_examined <- grades %>%
   nrow()
 ```
 
-The number of students who did not take the final exam is `r Non_examined`
+The number of students who did not take the final exam is `r Non_examined`.
 
+### Question 4
+Below is the distribution of Exam grades, within the group of those who took the exam:
+```{r}
+Exam_grade_dist <- grades %>%
+  ggplot(aes(y=Exam), filter(!is.na(Exam))) +
+  geom_histogram(binwidth = 5, fill="skyblue", color= "black",) +
+  labs( title= "Exam Grade Distribution", y="Grade", x= "Frequency") +
+  coord_flip()
+
+Exam_grade_dist
+```
 
 
 
