@@ -36,3 +36,17 @@ table_grade_stats<-
 table_grade_stats
 ```
 ### Question 3
+
+```{r}
+Non_examined <- grades %>%
+  filter(is.na(Exam)) %>%
+  nrow()
+```
+
+The number of students who did not take the final exam is `r Non_examined`
+
+
+
+
+
+
