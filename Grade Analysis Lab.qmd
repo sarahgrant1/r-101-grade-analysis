@@ -63,7 +63,7 @@ Below is a table depicting the number of students in each group:
 bygroup <- grades %>%
   group_by(Group) %>%
   summarise(N=n()) %>%
-  arrange(desc(Group)) %>%
+  arrange(N) %>%
   knitr::kable()
 bygroup
 ```
