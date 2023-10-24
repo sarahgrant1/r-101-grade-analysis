@@ -3,6 +3,7 @@ title: "Grade Analysis"
 author: "Sarah Grant"
 format: html
 ---
+### Question 1
 ```{r}
 #| message: false
 here::i_am("Grade Analysis.Rproj")
@@ -11,5 +12,7 @@ library(vroom)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
+library(knitr)
 ```
 
+### Question 2
