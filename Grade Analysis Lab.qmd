@@ -16,3 +16,23 @@ library(knitr)
 ```
 
 ### Question 2
+```{r}
+grades<- read.csv("grades.csv")
+```
+Below I am computing the minimum, maximum, median and mean grade at the Exam and including the results as a table in the rendered document.
+```{r}
+grade_stats <- grades %>%
+  filter(!is.na(Exam)) %>%
+  summarise(mingrade = min(Exam),
+            maxgrade = max(Exam),
+            mediangrade = median(Exam),
+            meangrade = mean(Exam))
+
+table_grade_stats<-
+  knitr::kable(grade_stats,
+  caption = "Grade Statistics",
+  col.names = c("Minimum Grade", "Maximum Grade", "Median Grade", "Mean Grade"))
+
+table_grade_stats
+```
+### Question 3
