@@ -60,8 +60,6 @@ Exam_grade_dist
 
 Below is a table depicting the number of students in each group:
 ```{r}
-group_table <- grades %>%
-  filter(Group, group_by(Group))
 ```
 
 
