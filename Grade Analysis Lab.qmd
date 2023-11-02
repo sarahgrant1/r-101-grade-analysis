@@ -146,4 +146,16 @@ gradesmissingbystudent <- longgrades %>%
 
 knitr::kable(head(gradesmissingbystudent))
 ```
+### Question 12
 
+Below I am representing graphically, the distribution of the number of missing grades per student:
+```{r}
+gradesmissingbystudentgraph <- gradesmissingbystudent %>%
+  ggplot(aes(x = MissingGrades)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black") +
+  labs(title = "Distribution of Missing Grades per Student", x = "Number of Missing Grades", y= "Frequency") +
+  theme_minimal()
+
+gradesmissingbystudentgraph
+```
+### Question 13
