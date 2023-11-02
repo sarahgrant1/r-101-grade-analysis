@@ -183,7 +183,7 @@ knitr::kable(head(onlinegradesmissingbystudents))
 ```
 ### Question 15
 
-Below I am representing graphically the distribution of grades at the Exam conditioned by the number of missing grades for the online tests. There are two approaches to this question so I will do them both below, beginning with the dplyr row-wise functionality:
+For this question I am representing graphically the distribution of grades at the Exam conditioned by the number of missing grades for the online tests. There are two approaches to this question so I will do them both below, beginning with the dplyr row-wise functionality:
 ```{r}
 qu15onlinegradesmissingbystudents <- grades %>%
   select(Id, starts_with("Online_MCQ")) %>%
@@ -199,7 +199,7 @@ qu15onlinegradesmissingbystudentsboxplot <- gradeswithmissingonlineexam %>% ggpl
   labs(title = "Distribution of Exam Grades by Missing Online Test Grades", x= "Missing Online Test Grades", y= "Exam Grade") +
   theme_minimal()
 ```
-The second approach below is by joining the results with the original table:
+The second approach is by joining the results with the original table:
 ```{r}
 
 gradeswithmissingonlinetest <- grades %>%
@@ -212,7 +212,23 @@ gradeswithmissingonlinetestplot <- gradeswithmissingonlinetest %>%
 
 gradeswithmissingonlinetestplot
 ```
-With both of these approaches the result is the same so I have only included one of these graphs on the rendered document.
+With both of these approaches the result is the same, so I have only included one of these graphs on the rendered document.
 
+### Question 16
 
+Below I am creating a table with two columns: Id to identify students, and Missed with the value "TRUE" when the student has missed at least one MCQ grade and "FALSE" if they haven't missed any MCQ grades:
+```{r}
+missedgradetable <- grades %>%
+  select(Id, starts_with("MCQ_")) %>% 
+  mutate(Missed = rowSums(is.na(.))>0) %>%
+  distinct(Id, .keep_all =TRUE)%>%
+  arrange(Id)
+```
+```{r}
+missedgradetable<- select(missedgradetable, Id, Missed)
 
+knitr::kable(head(missedgradetable))
+```
+The table above is very long so I am just displaying the first few columns. I have arranged the table by ID (in ascending order).
+
+### Question 17
