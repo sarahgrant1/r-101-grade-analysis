@@ -170,4 +170,14 @@ gradesmissingbystudentstringr <- longgrades %>%
 
 knitr::kable(gradesmissingbystudentstringr)
 ```
+### Question 14
+Below I have computed the number of missing grades for the online tests for each student, using the long format (and again, only showing the first few rows since it is a huge table):
+```{r}
+onlinegradesmissingbystudents <- longgrades %>%
+  filter(str_starts(name, "Online_MCQ")) %>%
+  group_by(Id) %>%
+  summarise(MissingOnlineGrades = sum(is.na(value)))
+
+knitr::kable(head(onlinegradesmissingbystudents))
+```
 
