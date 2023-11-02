@@ -126,5 +126,14 @@ exammissednograph <- ggplot(exammissedno, aes(x= Group, y= N)) +
 
 exammissednograph
 ```
+### Question 10
 
+Below I am creating a data frame built from the grades data set reshaped to a long format:
+```{r}
+longgrades <- grades %>%
+  pivot_longer(cols = c(matches("MCQ"), Exam),
+               names_to = "name",
+               values_to = "value")
+```
 
+### Question 11
