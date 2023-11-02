@@ -243,4 +243,21 @@ group_p_missedgradetable <- missedgradetable %>%
 knitr::kable(group_p_missedgradetable)
 ```
 ### Question 18
+Below is the graphical representation of the average grade at the Exam per group as a function of the percentage of missed MCQ_xx grade as defined in question 17. I added a trend line to the display to better see if there is any correlation between the average grade, and the percentage of missed MCQ grades:
+```{r}
+averagegradepergroup <- grades %>%
+  group_by(Group) %>%
+  summarise(AverageGrade = mean(Exam, na.rm = TRUE))
 
+examvsmissedgraph <- group_p_missedgradetable %>%
+  inner_join(averagegradepergroup, by = "Group") %>%
+  ggplot(aes(x = P_missed*100, y= AverageGrade)) +
+  geom_point() +
+  geom_jitter(alpha=0.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(title = "Average Exam Grade vs. Percentage of Missed MCQ Grades", x = "Percentage of Missed MCQ Grades", y = "Average Exam Grade") +
+  theme_minimal()
+
+examvsmissedgraph
+```
+There is a weak negative correlation (this doesn't necessarily mean that there is causation but in general, a negative relationship would be expected).
