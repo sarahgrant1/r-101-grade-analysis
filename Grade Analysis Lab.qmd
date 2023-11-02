@@ -13,6 +13,7 @@ library(dplyr)
 library(tidyr)
 library(ggplot2)
 library(knitr)
+library(stringr)
 ```
 
 ### Question 2
@@ -159,3 +160,14 @@ gradesmissingbystudentgraph <- gradesmissingbystudent %>%
 gradesmissingbystudentgraph
 ```
 ### Question 13
+
+Below I am computing the number of students who missed the exam in each group using the long format as computed in question 8:
+```{r}
+gradesmissingbystudentstringr <- longgrades %>%
+  filter(str_starts(name, "MCQ") | name== "Exam") %>%
+  group_by(Group) %>%
+  summarise(Count = sum(is.na(value)))
+
+knitr::kable(gradesmissingbystudentstringr)
+```
+
