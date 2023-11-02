@@ -137,3 +137,13 @@ longgrades <- grades %>%
 ```
 
 ### Question 11
+
+Below is a computation of the number of missing grades in total for each student arranged in ascending order of Student ID. Since there is a huge number of students, I am only displaying the first few lines of the table on the rendered documents:
+```{r}
+gradesmissingbystudent <- longgrades %>%
+  group_by(Id) %>%
+  summarise(MissingGrades =sum(is.na(value)))
+
+knitr::kable(head(gradesmissingbystudent))
+```
+
