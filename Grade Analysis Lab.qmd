@@ -232,3 +232,15 @@ knitr::kable(head(missedgradetable))
 The table above is very long so I am just displaying the first few columns. I have arranged the table by ID (in ascending order).
 
 ### Question 17
+Below is a table with two columns: 'Group' to identify groups and 'P_missed' with the percentage of students in each group who missed at least one MCQ_xx grade. I have arranged in ascending order of the percentage of students who missed at least one MCQ grade in each group:
+```{r}
+group_p_missedgradetable <- missedgradetable %>%
+  left_join(grades %>% select(Id, Group), by = "Id") %>%
+  group_by(Group) %>%
+  summarise(P_missed =mean(Missed)) %>%
+  arrange(P_missed)
+
+knitr::kable(group_p_missedgradetable)
+```
+### Question 18
+
