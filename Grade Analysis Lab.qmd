@@ -65,8 +65,18 @@ bygroup <- grades %>%
   summarise(N=n()) %>%
   arrange(N)
 
-  knitr::kable(bygroup)
+  knitr::kable(bygroup, caption = "Number of Students in Each Group")
 ```
+### Question 6
 
+Below is the same information, just represented graphically:
+```{r}
+bygroupgraph <- ggplot(bygroup, aes(x= Group, y = N)) +
+  geom_bar(stat = "Identity", fill = "blue") +
+  labs(title = "Number of Students in Each Group", x= "Group", y = "Count") +
+  theme_minimal()
+
+bygroupgraph
+```
 
 
