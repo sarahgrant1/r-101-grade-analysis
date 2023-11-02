@@ -14,6 +14,7 @@ library(tidyr)
 library(ggplot2)
 library(knitr)
 library(stringr)
+library(viridisLite)
 ```
 
 ### Question 2
@@ -180,4 +181,38 @@ onlinegradesmissingbystudents <- longgrades %>%
 
 knitr::kable(head(onlinegradesmissingbystudents))
 ```
+### Question 15
+
+Below I am representing graphically the distribution of grades at the Exam conditioned by the number of missing grades for the online tests. There are two approaches to this question so I will do them both below, beginning with the dplyr row-wise functionality:
+```{r}
+qu15onlinegradesmissingbystudents <- grades %>%
+  select(Id, starts_with("Online_MCQ")) %>%
+  rowwise() %>%
+  mutate(MissingOnlineGrades = sum(is.na(c_across(everything())))) %>%
+  select(Id, MissingOnlineGrades)
+
+gradeswithmissingonlineexam <- grades %>%
+  left_join(qu15onlinegradesmissingbystudents, by = "Id")
+
+qu15onlinegradesmissingbystudentsboxplot <- gradeswithmissingonlineexam %>% ggplot(aes(x = MissingOnlineGrades, y= Exam)) +
+  geom_point()+
+  labs(title = "Distribution of Exam Grades by Missing Online Test Grades", x= "Missing Online Test Grades", y= "Exam Grade") +
+  theme_minimal()
+```
+The second approach below is by joining the results with the original table:
+```{r}
+
+gradeswithmissingonlinetest <- grades %>%
+  left_join(onlinegradesmissingbystudents, by = "Id")
+
+gradeswithmissingonlinetestplot <- gradeswithmissingonlinetest %>%
+  ggplot(aes(x =MissingOnlineGrades, y= Exam)) +
+  geom_point(fill ="black") +
+  labs(title = "Distribution of Exam Grades by Missing Online Test Grades", x = "Missing Online Test Grades", y="Exam Grade") + theme_minimal()
+
+gradeswithmissingonlinetestplot
+```
+With both of these approaches the result is the same so I have only included one of these graphs on the rendered document.
+
+
 
