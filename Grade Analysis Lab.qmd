@@ -115,5 +115,16 @@ exammissedno <- grades %>%
 
 knitr::kable(exammissedno, caption = "Number of Students Who Missed the Exam in Each Group")
 ```
+### Question 9
+
+Below, I am representating graphically, the table from question 8:
+```{r}
+exammissednograph <- ggplot(exammissedno, aes(x= Group, y= N)) +
+  geom_col(fill = "blue", color ="black") +
+  labs(title = "Number of Students Who Missed the Exam by Group", x = "Group", y = "Count") +
+  theme_minimal()
+
+exammissednograph
+```
 
 
