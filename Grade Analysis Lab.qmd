@@ -103,6 +103,17 @@ examdistboxplot <- grades %>%
 
 examdistboxplot
 ```
+### Question 8
 
+Below is the computation of the number of students who missed the exam in each group, arranged in ascending order of the number of students who missed an exam in each group :
+
+```{r}
+exammissedno <- grades %>%
+  group_by (Group) %>%
+  summarise(N = sum(is.na(Exam))) %>%
+  arrange(N)
+
+knitr::kable(exammissedno, caption = "Number of Students Who Missed the Exam in Each Group")
+```
 
 
