@@ -78,5 +78,31 @@ bygroupgraph <- ggplot(bygroup, aes(x= Group, y = N)) +
 
 bygroupgraph
 ```
+### Question 7 
+
+Below is two different graphical representations of the distribution of the grades at the Exam conditioned by the group.
+
+Firstly I am using grouped histograms (only using observations of those who took the exam):
+
+```{r}
+examdistbygroup <- grades %>%
+  ggplot(aes(x= Exam, fill = Group), filter(!is.na(Exam))) +
+  geom_histogram(binwidth = 1, position= "dodge", fill="skyblue", color= "black",) +
+  labs(title = "Distribution of Exam Grades by Group (Grouped Histograms)", x = "Exam Grade", y= "Frequency") +
+  theme_minimal()
+
+examdistbygroup
+```
+Secondly, I am creating a box plot as another way to display this distribution:
+```{r}
+examdistboxplot <- grades %>%
+  ggplot(aes(x = Group, y= Exam, fill = Group), filter(!is.na(Exam))) +
+  geom_boxplot() +
+  labs(title = "Distribution of Exam Grades by Group (Box Plot)", x= "Group", y= "Exam Grade") +
+  theme_minimal()
+
+examdistboxplot
+```
+
 
 
